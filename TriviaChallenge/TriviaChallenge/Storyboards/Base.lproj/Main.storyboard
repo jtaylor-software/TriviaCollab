@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -99,17 +100,105 @@
             </objects>
             <point key="canvasLocation" x="926.08695652173924" y="-165.40178571428569"/>
         </scene>
-        <!--View Controller-->
+        <!--Questions View Controller-->
         <scene sceneID="D9D-wh-cO4">
             <objects>
-                <viewController id="iHO-ia-Zcn" sceneMemberID="viewController">
+                <viewController id="iHO-ia-Zcn" customClass="QuestionsViewController" customModule="TriviaChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ztF-2b-kDl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trivia Question" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpg-ue-Pf6">
+                                <rect key="frame" x="41.5" y="108" width="331" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="72" translatesAutoresizingMaskIntoConstraints="NO" id="ae4-bk-hMC">
+                                <rect key="frame" x="20.5" y="285" width="373" height="336"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arY-Sp-Ndv">
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                                        <state key="normal" title="Answer 1">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="firstAnswerButtonTapped:" destination="iHO-ia-Zcn" eventType="touchUpInside" id="byy-kV-VJ6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5s7-xS-pvr">
+                                        <rect key="frame" x="0.0" y="102" width="373" height="30"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <state key="normal" title="Answer 2">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="secondAnswerButtonTapped:" destination="iHO-ia-Zcn" eventType="touchUpInside" id="aBk-WY-dAE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XU4-Zy-xcB">
+                                        <rect key="frame" x="0.0" y="204" width="373" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <state key="normal" title="Answer 3">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="thirdAnswerButtonTapped:" destination="iHO-ia-Zcn" eventType="touchUpInside" id="DNW-FX-BJa"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9C-vQ-NKz">
+                                        <rect key="frame" x="0.0" y="306" width="373" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <state key="normal" title="Answer 4">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="fourthAnswerButtonTapped:" destination="iHO-ia-Zcn" eventType="touchUpInside" id="8Z8-SP-HnM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Round" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SK8-So-rBy">
+                                <rect key="frame" x="83" y="169" width="248" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0z-og-uPR">
+                                <rect key="frame" x="83" y="760.5" width="248" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="eNS-Z4-zhP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dpg-ue-Pf6" firstAttribute="centerX" secondItem="eNS-Z4-zhP" secondAttribute="centerX" id="2mV-3L-4vF"/>
+                            <constraint firstItem="SK8-So-rBy" firstAttribute="width" secondItem="eNS-Z4-zhP" secondAttribute="width" multiplier="0.6" id="5Pm-eN-H5v"/>
+                            <constraint firstItem="ae4-bk-hMC" firstAttribute="width" secondItem="eNS-Z4-zhP" secondAttribute="width" multiplier="0.9" id="F2x-r8-bgU"/>
+                            <constraint firstItem="a0z-og-uPR" firstAttribute="centerX" secondItem="eNS-Z4-zhP" secondAttribute="centerX" id="b1d-oU-AVT"/>
+                            <constraint firstItem="dpg-ue-Pf6" firstAttribute="top" secondItem="eNS-Z4-zhP" secondAttribute="top" constant="64" id="bX7-J2-VKi"/>
+                            <constraint firstItem="ae4-bk-hMC" firstAttribute="centerY" secondItem="eNS-Z4-zhP" secondAttribute="centerY" id="cda-rd-WFC"/>
+                            <constraint firstItem="SK8-So-rBy" firstAttribute="top" secondItem="dpg-ue-Pf6" secondAttribute="bottom" constant="32" id="d2t-hv-eeW"/>
+                            <constraint firstItem="a0z-og-uPR" firstAttribute="width" secondItem="eNS-Z4-zhP" secondAttribute="width" multiplier="0.6" id="dFQ-A8-ghR"/>
+                            <constraint firstItem="eNS-Z4-zhP" firstAttribute="bottom" secondItem="a0z-og-uPR" secondAttribute="bottom" constant="80" id="e4J-6i-5tS"/>
+                            <constraint firstItem="SK8-So-rBy" firstAttribute="centerX" secondItem="eNS-Z4-zhP" secondAttribute="centerX" id="gqB-RS-Kxq"/>
+                            <constraint firstItem="ae4-bk-hMC" firstAttribute="centerX" secondItem="eNS-Z4-zhP" secondAttribute="centerX" id="nbn-6A-KX3"/>
+                            <constraint firstItem="dpg-ue-Pf6" firstAttribute="width" secondItem="eNS-Z4-zhP" secondAttribute="width" multiplier="0.8" id="nz3-r1-syD"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WDY-q2-1kG"/>
+                    <connections>
+                        <outlet property="currentRoundLabel" destination="SK8-So-rBy" id="eVT-9o-x7U"/>
+                        <outlet property="currentScoreLabel" destination="a0z-og-uPR" id="2Q6-k7-CaZ"/>
+                        <outlet property="firstAnswerButton" destination="arY-Sp-Ndv" id="GL4-Oc-cPn"/>
+                        <outlet property="fourthAnswerButton" destination="L9C-vQ-NKz" id="jud-IO-Qag"/>
+                        <outlet property="questionLabel" destination="dpg-ue-Pf6" id="9HR-Zh-BUW"/>
+                        <outlet property="secondAnswerButton" destination="5s7-xS-pvr" id="qgR-Y5-dAT"/>
+                        <outlet property="thirdAnswerButton" destination="XU4-Zy-xcB" id="j0c-iR-IvE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jm3-QO-YwZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -135,8 +224,20 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
