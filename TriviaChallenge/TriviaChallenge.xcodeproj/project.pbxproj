@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		12A77E68258AC1B500BEB62D /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A77E67258AC1B500BEB62D /* QuestionsViewController.swift */; };
+		8F77FA73258C228E00DA6884 /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77FA72258C228E00DA6884 /* QuestionController.swift */; };
+		8F77FA76258C22DD00DA6884 /* QuestionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77FA75258C22DD00DA6884 /* QuestionCategory.swift */; };
+		8F77FA79258C232200DA6884 /* QuestionDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77FA78258C232200DA6884 /* QuestionDifficulty.swift */; };
+		8F77FA7C258C23DD00DA6884 /* QuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77FA7B258C23DD00DA6884 /* QuestionType.swift */; };
 		8F81D590258AAE5C00473084 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F81D58F258AAE5C00473084 /* Token.swift */; };
 		8FAFCDA4258A928000BB79AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAFCDA3258A928000BB79AF /* AppDelegate.swift */; };
 		8FAFCDA6258A928000BB79AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAFCDA5258A928000BB79AF /* SceneDelegate.swift */; };
@@ -20,6 +24,10 @@
 
 /* Begin PBXFileReference section */
 		12A77E67258AC1B500BEB62D /* QuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
+		8F77FA72258C228E00DA6884 /* QuestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionController.swift; sourceTree = "<group>"; };
+		8F77FA75258C22DD00DA6884 /* QuestionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCategory.swift; sourceTree = "<group>"; };
+		8F77FA78258C232200DA6884 /* QuestionDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDifficulty.swift; sourceTree = "<group>"; };
+		8F77FA7B258C23DD00DA6884 /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
 		8F81D58F258AAE5C00473084 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		8FAFCDA0258A928000BB79AF /* TriviaChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriviaChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FAFCDA3258A928000BB79AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,11 +51,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F77FA71258C226D00DA6884 /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F77FA72258C228E00DA6884 /* QuestionController.swift */,
+			);
+			path = "Model Controller";
+			sourceTree = "<group>";
+		};
 		8FAFCD97258A928000BB79AF = {
 			isa = PBXGroup;
 			children = (
 				8FAFCDA2258A928000BB79AF /* TriviaChallenge */,
-				8FAFCDC1258A940300BB79AF /* Helpers+Extensions */,
 				8FAFCDA1258A928000BB79AF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,8 +78,8 @@
 		8FAFCDA2258A928000BB79AF /* TriviaChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				8F77FA71258C226D00DA6884 /* Model Controller */,
 				8FAFCDBD258A935300BB79AF /* Model */,
-				8FAFCDBF258A93AF00BB79AF /* Model Controllers */,
 				8FAFCDC0258A93D400BB79AF /* View Controllers */,
 				8FAFCDB8258A929900BB79AF /* Resources */,
 				8FAFCDBC258A933E00BB79AF /* Storyboards */,
@@ -97,15 +112,11 @@
 			children = (
 				8FAFCDC6258A983900BB79AF /* Question.swift */,
 				8F81D58F258AAE5C00473084 /* Token.swift */,
+				8F77FA75258C22DD00DA6884 /* QuestionCategory.swift */,
+				8F77FA78258C232200DA6884 /* QuestionDifficulty.swift */,
+				8F77FA7B258C23DD00DA6884 /* QuestionType.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		8FAFCDBF258A93AF00BB79AF /* Model Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
 		8FAFCDC0258A93D400BB79AF /* View Controllers */ = {
@@ -115,13 +126,6 @@
 				12A77E67258AC1B500BEB62D /* QuestionsViewController.swift */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		8FAFCDC1258A940300BB79AF /* Helpers+Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Helpers+Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,12 +198,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F77FA73258C228E00DA6884 /* QuestionController.swift in Sources */,
 				8FAFCDA4258A928000BB79AF /* AppDelegate.swift in Sources */,
 				8F81D590258AAE5C00473084 /* Token.swift in Sources */,
 				12A77E68258AC1B500BEB62D /* QuestionsViewController.swift in Sources */,
 				8FAFCDC7258A983900BB79AF /* Question.swift in Sources */,
 				8FAFCDC4258A957A00BB79AF /* SelectionsViewController.swift in Sources */,
 				8FAFCDA6258A928000BB79AF /* SceneDelegate.swift in Sources */,
+				8F77FA79258C232200DA6884 /* QuestionDifficulty.swift in Sources */,
+				8F77FA76258C22DD00DA6884 /* QuestionCategory.swift in Sources */,
+				8F77FA7C258C23DD00DA6884 /* QuestionType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
