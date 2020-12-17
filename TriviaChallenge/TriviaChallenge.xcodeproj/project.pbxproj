@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F04AF64258AB257003336AC /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F04AF63258AB257003336AC /* QuestionController.swift */; };
+		8F5FEB6A258AB64F0018854A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FEB69258AB64F0018854A /* NetworkError.swift */; };
+		8F5FEB6D258AC8C90018854A /* QuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FEB6C258AC8C90018854A /* QuestionType.swift */; };
+		8F5FEB70258AC8E50018854A /* QuestionDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FEB6F258AC8E50018854A /* QuestionDifficulty.swift */; };
+		8F5FEB73258ACBD20018854A /* QuestionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FEB72258ACBD20018854A /* QuestionCategory.swift */; };
 		8F81D590258AAE5C00473084 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F81D58F258AAE5C00473084 /* Token.swift */; };
 		8FAFCDA4258A928000BB79AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAFCDA3258A928000BB79AF /* AppDelegate.swift */; };
 		8FAFCDA6258A928000BB79AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAFCDA5258A928000BB79AF /* SceneDelegate.swift */; };
@@ -18,6 +23,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F04AF63258AB257003336AC /* QuestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionController.swift; sourceTree = "<group>"; };
+		8F5FEB69258AB64F0018854A /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		8F5FEB6C258AC8C90018854A /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
+		8F5FEB6F258AC8E50018854A /* QuestionDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDifficulty.swift; sourceTree = "<group>"; };
+		8F5FEB72258ACBD20018854A /* QuestionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCategory.swift; sourceTree = "<group>"; };
 		8F81D58F258AAE5C00473084 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		8FAFCDA0258A928000BB79AF /* TriviaChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriviaChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FAFCDA3258A928000BB79AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				8FAFCDC6258A983900BB79AF /* Question.swift */,
+				8F5FEB6C258AC8C90018854A /* QuestionType.swift */,
+				8F5FEB6F258AC8E50018854A /* QuestionDifficulty.swift */,
+				8F5FEB72258ACBD20018854A /* QuestionCategory.swift */,
 				8F81D58F258AAE5C00473084 /* Token.swift */,
 			);
 			path = Model;
@@ -102,6 +115,7 @@
 		8FAFCDBF258A93AF00BB79AF /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8F04AF63258AB257003336AC /* QuestionController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -117,8 +131,10 @@
 		8FAFCDC1258A940300BB79AF /* Helpers+Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8F5FEB69258AB64F0018854A /* NetworkError.swift */,
 			);
-			path = "Helpers+Extensions";
+			name = "Helpers+Extensions";
+			path = "TriviaChallenge/Helpers+Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,10 +208,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FAFCDA4258A928000BB79AF /* AppDelegate.swift in Sources */,
+				8F5FEB6A258AB64F0018854A /* NetworkError.swift in Sources */,
 				8F81D590258AAE5C00473084 /* Token.swift in Sources */,
 				8FAFCDC7258A983900BB79AF /* Question.swift in Sources */,
 				8FAFCDC4258A957A00BB79AF /* SelectionsViewController.swift in Sources */,
 				8FAFCDA6258A928000BB79AF /* SceneDelegate.swift in Sources */,
+				8F04AF64258AB257003336AC /* QuestionController.swift in Sources */,
+				8F5FEB73258ACBD20018854A /* QuestionCategory.swift in Sources */,
+				8F5FEB70258AC8E50018854A /* QuestionDifficulty.swift in Sources */,
+				8F5FEB6D258AC8C90018854A /* QuestionType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
