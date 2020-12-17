@@ -8,12 +8,12 @@
 import Foundation
 
 struct Question: Codable {
-    let question: String
+    let questionText: String
     let correctAnswer: String
     let incorrectAnswers: [String]
     
     enum CodingKeys: String, CodingKey {
-        case question
+        case questionText
         case correctAnswer = "correct_answer"
         case incorrectAnswers = "incorrect_answers"
         
