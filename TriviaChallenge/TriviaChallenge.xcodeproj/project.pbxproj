@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		12A77E68258AC1B500BEB62D /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A77E67258AC1B500BEB62D /* QuestionsViewController.swift */; };
 		12A77E6D258C26C500BEB62D /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A77E6C258C26C500BEB62D /* NetworkError.swift */; };
+		8F45FB00258C822D00F91B1E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F45FAFF258C822D00F91B1E /* StringExtension.swift */; };
 		8F77FA73258C228E00DA6884 /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77FA72258C228E00DA6884 /* QuestionController.swift */; };
 		8F77FA76258C22DD00DA6884 /* QuestionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77FA75258C22DD00DA6884 /* QuestionCategory.swift */; };
 		8F77FA79258C232200DA6884 /* QuestionDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77FA78258C232200DA6884 /* QuestionDifficulty.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		12A77E67258AC1B500BEB62D /* QuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
 		12A77E6C258C26C500BEB62D /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		8F45FAFF258C822D00F91B1E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		8F77FA72258C228E00DA6884 /* QuestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionController.swift; sourceTree = "<group>"; };
 		8F77FA75258C22DD00DA6884 /* QuestionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCategory.swift; sourceTree = "<group>"; };
 		8F77FA78258C232200DA6884 /* QuestionDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDifficulty.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				12A77E6C258C26C500BEB62D /* NetworkError.swift */,
+				8F45FAFF258C822D00F91B1E /* StringExtension.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				8FAFCDC4258A957A00BB79AF /* SelectionsViewController.swift in Sources */,
 				8FAFCDA6258A928000BB79AF /* SceneDelegate.swift in Sources */,
 				8F77FA79258C232200DA6884 /* QuestionDifficulty.swift in Sources */,
+				8F45FB00258C822D00F91B1E /* StringExtension.swift in Sources */,
 				8F77FA76258C22DD00DA6884 /* QuestionCategory.swift in Sources */,
 				12A77E6D258C26C500BEB62D /* NetworkError.swift in Sources */,
 				8F77FA7C258C23DD00DA6884 /* QuestionType.swift in Sources */,
