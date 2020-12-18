@@ -26,20 +26,27 @@ class QuestionsViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        QuestionController.sharedInstance.retrieveSessonToken { (_) in
-            
-        }
-        QuestionController.sharedInstance.retrieveQuestionsFor(category: .random, ofType: .multiple, withDifficulty: .medium, withToken: nil) { (result) in
+        
+        QuestionController.sharedInstance.retrieveSessonToken { (result) in
             switch result {
             
-            case .success(let questions):
-                DispatchQueue.main.async {
-                    self.questionsArray = questions
-                    self.reloadViews()
+            case .success(let token):
+                print("Token: \(token.token)")
+                QuestionController.sharedInstance.retrieveQuestionsFor(category: .random, ofType: .multiple, withDifficulty: .medium, withToken: token.token ) { (result) in
+                    switch result {
+                    
+                    case .success(let questions):
+                        DispatchQueue.main.async {
+                            self.questionsArray = questions
+                            self.reloadViews()
+                        }
+                        
+                    case .failure(_):
+                        print ("Error")
+                    }
                 }
-                
-            case .failure(_):
-                print ("Error")
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
         
