@@ -13,14 +13,15 @@ class QuestionsViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var currentRoundLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
-    
     @IBOutlet var answerButtonCollection: [UIButton]!
     
     //MARK: - Properties
     var questionsArray: [Question] = []
     var question: Question?
     var correctAnswer: String?
+    var correctAnswerTag: Int!
     var incorrectAnswers: [String] = []
+    var score = 0
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -55,10 +56,14 @@ class QuestionsViewController: UIViewController {
         } else if sender.tag == 4{
             print ("Answer 4")
         }
-        reloadQuestion()
+        checkCorrectAnswer(sender)
+        
     }
+    
+    //MARK: - Methods
+    
     func setTitlesForButtons() {
-        let correctAnswerTag = answerRandomizer()
+        correctAnswerTag = answerRandomizer()
         var count = 0
         for button in answerButtonCollection {
             if button.tag == correctAnswerTag {
@@ -69,11 +74,24 @@ class QuestionsViewController: UIViewController {
             }
         }
     }
+    
+    func checkCorrectAnswer(_ sender: UIButton) {
+        if sender.tag == correctAnswerTag {
+            updateScore()
+        }
+        reloadQuestion()
+    }
+    
+    func updateScore() {
+        score += 100
+        currentScoreLabel.text = "Score: \(score)"
+    }
 
 func reloadQuestion() {
     guard questionsArray.count > 0 else { return }
-    questionsArray.remove(at: 0)
     question = questionsArray.randomElement()
+    guard let index = questionsArray.firstIndex(of: question!) else { return }
+    questionsArray.remove(at: index)
     reloadViews()
 }
 
@@ -82,10 +100,10 @@ func answerRandomizer() -> Int {
 }
 func reloadViews() {
     guard questionsArray.count > 0 else { return }
-    //        guard let answer = correctAnswer else { return }
+    
     question = questionsArray.randomElement()
-    questionLabel.text = question!.question
-    correctAnswer = question!.correctAnswer
+    questionLabel.text = question?.question
+    correctAnswer = question?.correctAnswer
     incorrectAnswers.append(contentsOf: question!.incorrectAnswers)
     setTitlesForButtons()
 }
