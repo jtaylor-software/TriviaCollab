@@ -16,6 +16,9 @@ class QuestionsViewController: UIViewController {
     @IBOutlet var answerButtonCollection: [UIButton]!
     
     //MARK: - Properties
+    
+    var seclectedCategory: QuestionCategory?
+    var selectedDifficulty: QuestionDifficulty?
     var questionsArray: [Question] = []
     var question: Question?
     var correctAnswer: String?
@@ -26,30 +29,7 @@ class QuestionsViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        QuestionController.sharedInstance.retrieveSessonToken { (result) in
-            switch result {
-            
-            case .success(let token):
-                print("Token: \(token.token)")
-                QuestionController.sharedInstance.retrieveQuestionsFor(category: .random, ofType: .multiple, withDifficulty: .medium, withToken: token.token ) { (result) in
-                    switch result {
-                    
-                    case .success(let questions):
-                        DispatchQueue.main.async {
-                            self.questionsArray = questions
-                            self.reloadViews()
-                        }
-                        
-                    case .failure(_):
-                        print ("Error")
-                    }
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-        
+        getSessionToken()
     }
     
     //MARK: - Actions
@@ -68,6 +48,36 @@ class QuestionsViewController: UIViewController {
     }
     
     //MARK: - Methods
+    
+    func getSessionToken() {
+        QuestionController.sharedInstance.retrieveSessonToken { (result) in
+            switch result {
+            
+            case .success(let token):
+                print("Token: \(token.token)")
+                self.getQuestions(token: token)
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getQuestions(token: Token) {
+        QuestionController.sharedInstance.retrieveQuestionsFor(category: .random, ofType: .multiple, withDifficulty: .medium, withToken: token.token ) { (result) in
+            switch result {
+            
+            case .success(let questions):
+                DispatchQueue.main.async {
+                    self.questionsArray = questions
+                    self.reloadViews()
+                }
+                
+            case .failure(_):
+                print ("Error")
+            }
+        }
+    }
     
     func setTitlesForButtons() {
         correctAnswerTag = answerRandomizer()
@@ -93,26 +103,26 @@ class QuestionsViewController: UIViewController {
         score += 100
         currentScoreLabel.text = "Score: \(score)"
     }
-
-func reloadQuestion() {
-    guard questionsArray.count > 0 else { return }
-    question = questionsArray.randomElement()
-    guard let index = questionsArray.firstIndex(of: question!) else { return }
-    questionsArray.remove(at: index)
-    reloadViews()
-}
-
-func answerRandomizer() -> Int {
-    return Int.random(in: 1...4)
-}
-func reloadViews() {
-    guard questionsArray.count > 0 else { return }
     
-    question = questionsArray.randomElement()
-    questionLabel.text = question?.question
-    correctAnswer = question?.correctAnswer
-    incorrectAnswers.append(contentsOf: question!.incorrectAnswers)
-    setTitlesForButtons()
-}
-
+    func reloadQuestion() {
+        guard questionsArray.count > 0 else { return }
+        question = questionsArray.randomElement()
+        guard let index = questionsArray.firstIndex(of: question!) else { return }
+        questionsArray.remove(at: index)
+        reloadViews()
+    }
+    
+    func answerRandomizer() -> Int {
+        return Int.random(in: 1...4)
+    }
+    func reloadViews() {
+        guard questionsArray.count > 0 else { return }
+        
+        question = questionsArray.randomElement()
+        questionLabel.text = question?.question
+        correctAnswer = question?.correctAnswer
+        incorrectAnswers.append(contentsOf: question!.incorrectAnswers)
+        setTitlesForButtons()
+    }
+    
 }
