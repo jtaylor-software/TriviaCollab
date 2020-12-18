@@ -8,7 +8,7 @@
 import UIKit
 
 extension String {
-    func htmlAttributedString(size: CGFloat) -> NSAttributedString? {
+   @discardableResult func htmlAttributedString(size: CGFloat) -> NSAttributedString? {
         let htmlTemplate = """
         <!doctype html>
         <html>
