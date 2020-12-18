@@ -21,7 +21,7 @@ class QuestionsViewController: UIViewController {
     var selectedDifficulty: QuestionDifficulty?
     var questionsArray: [Question] = []
     var question: Question?
-    var correctAnswer: String?
+    var correctAnswer: NSAttributedString?
     var correctAnswerTag: Int!
     var incorrectAnswers: [String] = []
     var score = 0
@@ -119,8 +119,8 @@ class QuestionsViewController: UIViewController {
         guard questionsArray.count > 0 else { return }
         
         question = questionsArray.randomElement()
-        questionLabel.text = question?.question
-        correctAnswer = question?.correctAnswer
+        questionLabel.attributedText = question?.question.htmlAttributedString(size: 25.0)
+        correctAnswer = question?.correctAnswer.htmlAttributedString(size: 10.0)
         incorrectAnswers.append(contentsOf: question!.incorrectAnswers)
         setTitlesForButtons()
     }
