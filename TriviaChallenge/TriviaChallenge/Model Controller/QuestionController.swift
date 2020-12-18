@@ -66,7 +66,7 @@ class QuestionController {
         }.resume()
     } // End of retrieveSessionToken
     
-    func retrieveQuestionsFor(category: QuestionCategory, ofType type: QuestionType, withDifficulty difficulty: QuestionDifficulty, andNumberOfQuestions amount: Int = 10, withToken: Token?, completion: @escaping (Result<[Question], NetworkError>) -> Void) {
+    func retrieveQuestionsFor(category: QuestionCategory, ofType type: QuestionType, withDifficulty difficulty: QuestionDifficulty, andNumberOfQuestions amount: Int = 10, withToken: String?, completion: @escaping (Result<[Question], NetworkError>) -> Void) {
         
         guard let url = baseURL else { return completion(.failure(.unableToUnwrap)) }
         

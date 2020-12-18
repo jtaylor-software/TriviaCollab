@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Question: Codable {
+struct Question: Codable, Equatable {
     let question: String
     let correctAnswer: String
     let incorrectAnswers: [String]
@@ -23,3 +23,5 @@ struct Question: Codable {
 struct TopLevelJSON: Codable {
     let results: [Question]
 } //end of struct
+
+

@@ -13,35 +13,23 @@ class QuestionsViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var currentRoundLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
-    
     @IBOutlet var answerButtonCollection: [UIButton]!
     
     //MARK: - Properties
+    
+    var seclectedCategory: QuestionCategory?
+    var selectedDifficulty: QuestionDifficulty?
     var questionsArray: [Question] = []
     var question: Question?
     var correctAnswer: String?
+    var correctAnswerTag: Int!
     var incorrectAnswers: [String] = []
+    var score = 0
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        QuestionController.sharedInstance.retrieveSessonToken { (_) in
-            
-        }
-        QuestionController.sharedInstance.retrieveQuestionsFor(category: .random, ofType: .multiple, withDifficulty: .medium, withToken: nil) { (result) in
-            switch result {
-            
-            case .success(let questions):
-                DispatchQueue.main.async {
-                    self.questionsArray = questions
-                    self.reloadViews()
-                }
-                
-            case .failure(_):
-                print ("Error")
-            }
-        }
-        
+        getSessionToken()
     }
     
     //MARK: - Actions
@@ -55,10 +43,44 @@ class QuestionsViewController: UIViewController {
         } else if sender.tag == 4{
             print ("Answer 4")
         }
-        reloadQuestion()
+        checkCorrectAnswer(sender)
+        
     }
+    
+    //MARK: - Methods
+    
+    func getSessionToken() {
+        QuestionController.sharedInstance.retrieveSessonToken { (result) in
+            switch result {
+            
+            case .success(let token):
+                print("Token: \(token.token)")
+                self.getQuestions(token: token)
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getQuestions(token: Token) {
+        QuestionController.sharedInstance.retrieveQuestionsFor(category: .random, ofType: .multiple, withDifficulty: .medium, withToken: token.token ) { (result) in
+            switch result {
+            
+            case .success(let questions):
+                DispatchQueue.main.async {
+                    self.questionsArray = questions
+                    self.reloadViews()
+                }
+                
+            case .failure(_):
+                print ("Error")
+            }
+        }
+    }
+    
     func setTitlesForButtons() {
-        let correctAnswerTag = answerRandomizer()
+        correctAnswerTag = answerRandomizer()
         var count = 0
         for button in answerButtonCollection {
             if button.tag == correctAnswerTag {
@@ -69,35 +91,38 @@ class QuestionsViewController: UIViewController {
             }
         }
     }
-
-func reloadQuestion() {
-    guard questionsArray.count > 0 else { return }
-    questionsArray.remove(at: 0)
-    question = questionsArray.randomElement()
-    reloadViews()
-}
-
-func answerRandomizer() -> Int {
-    return Int.random(in: 1...4)
-}
-func reloadViews() {
-    guard questionsArray.count > 0 else { return }
-    //        guard let answer = correctAnswer else { return }
-    question = questionsArray.randomElement()
-    questionLabel.text = question!.question
-    correctAnswer = question!.correctAnswer
-    incorrectAnswers.append(contentsOf: question!.incorrectAnswers)
-    setTitlesForButtons()
-}
-
-/*
- // MARK: - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
- // Get the new view controller using segue.destination.
- // Pass the selected object to the new view controller.
- }
- */
-
+    
+    func checkCorrectAnswer(_ sender: UIButton) {
+        if sender.tag == correctAnswerTag {
+            updateScore()
+        }
+        reloadQuestion()
+    }
+    
+    func updateScore() {
+        score += 100
+        currentScoreLabel.text = "Score: \(score)"
+    }
+    
+    func reloadQuestion() {
+        guard questionsArray.count > 0 else { return }
+        question = questionsArray.randomElement()
+        guard let index = questionsArray.firstIndex(of: question!) else { return }
+        questionsArray.remove(at: index)
+        reloadViews()
+    }
+    
+    func answerRandomizer() -> Int {
+        return Int.random(in: 1...4)
+    }
+    func reloadViews() {
+        guard questionsArray.count > 0 else { return }
+        
+        question = questionsArray.randomElement()
+        questionLabel.text = question?.question
+        correctAnswer = question?.correctAnswer
+        incorrectAnswers.append(contentsOf: question!.incorrectAnswers)
+        setTitlesForButtons()
+    }
+    
 }
