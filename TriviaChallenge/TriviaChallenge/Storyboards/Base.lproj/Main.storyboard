@@ -193,11 +193,11 @@
                     <connections>
                         <outlet property="currentRoundLabel" destination="SK8-So-rBy" id="eVT-9o-x7U"/>
                         <outlet property="currentScoreLabel" destination="a0z-og-uPR" id="2Q6-k7-CaZ"/>
-                        <outlet property="firstAnswerButton" destination="arY-Sp-Ndv" id="GL4-Oc-cPn"/>
-                        <outlet property="fourthAnswerButton" destination="L9C-vQ-NKz" id="jud-IO-Qag"/>
                         <outlet property="questionLabel" destination="dpg-ue-Pf6" id="9HR-Zh-BUW"/>
-                        <outlet property="secondAnswerButton" destination="5s7-xS-pvr" id="qgR-Y5-dAT"/>
-                        <outlet property="thirdAnswerButton" destination="XU4-Zy-xcB" id="j0c-iR-IvE"/>
+                        <outletCollection property="answerButtonCollection" destination="arY-Sp-Ndv" collectionClass="NSMutableArray" id="I4M-Yy-DOg"/>
+                        <outletCollection property="answerButtonCollection" destination="5s7-xS-pvr" collectionClass="NSMutableArray" id="Vbz-tw-gqd"/>
+                        <outletCollection property="answerButtonCollection" destination="XU4-Zy-xcB" collectionClass="NSMutableArray" id="F2J-0Q-bil"/>
+                        <outletCollection property="answerButtonCollection" destination="L9C-vQ-NKz" collectionClass="NSMutableArray" id="UUR-i4-8x4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jm3-QO-YwZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
