@@ -19,12 +19,14 @@ class QuestionsViewController: UIViewController {
     
     var seclectedCategory: QuestionCategory?
     var selectedDifficulty: QuestionDifficulty?
+    var token: Token?
     var questionsArray: [Question] = []
     var question: Question?
     var correctAnswer: NSAttributedString?
     var correctAnswerTag: Int!
     var incorrectAnswers: [String] = []
     var score = 0
+    var isGameOver = false
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -43,7 +45,13 @@ class QuestionsViewController: UIViewController {
         } else if sender.tag == 4{
             print ("Answer 4")
         }
-        checkCorrectAnswer(sender)
+        if !isGameOver {
+            checkCorrectAnswer(sender)
+        } else {
+            guard let token = token else { return }
+            getQuestions(token: token)
+            
+        }
         
     }
     
@@ -55,6 +63,7 @@ class QuestionsViewController: UIViewController {
             
             case .success(let token):
                 print("Token: \(token.token)")
+                self.token = token
                 self.getQuestions(token: token)
                 
             case .failure(let error):
@@ -64,7 +73,7 @@ class QuestionsViewController: UIViewController {
     }
     
     func getQuestions(token: Token) {
-        QuestionController.sharedInstance.retrieveQuestionsFor(category: .random, ofType: .multiple, withDifficulty: .medium, withToken: token.token ) { (result) in
+        QuestionController.sharedInstance.retrieveQuestionsFor(category: .scienceAndComputers, ofType: .multiple, withDifficulty: .easy, andNumberOfQuestions: 10, withToken: token.token ) { (result) in
             switch result {
             
             case .success(let questions):
@@ -76,6 +85,22 @@ class QuestionsViewController: UIViewController {
             case .failure(_):
                 print ("Error")
             }
+        }
+        isGameOver = false
+    }
+    
+    func gameOver() {
+        questionLabel.text = "Game Over!"
+        
+        hideOrShowButtons(true)
+        answerButtonCollection[0].setTitle("New Game?", for: .normal)
+        answerButtonCollection[0].isHidden = false
+        isGameOver = true
+    }
+    
+    func hideOrShowButtons(_ hide: Bool) {
+        for button in answerButtonCollection {
+            button.isHidden = hide
         }
     }
     
@@ -116,12 +141,21 @@ class QuestionsViewController: UIViewController {
         return Int.random(in: 1...4)
     }
     func reloadViews() {
-        guard questionsArray.count > 0 else { return }
+        guard !questionsArray.isEmpty else
+        {
+            gameOver()
+            return
+            
+        }
         
+        hideOrShowButtons(false)
         question = questionsArray.randomElement()
         questionLabel.attributedText = question?.question.htmlAttributedString(size: 25.0)
         correctAnswer = question?.correctAnswer.htmlAttributedString(size: 10.0)
-        incorrectAnswers.append(contentsOf: question!.incorrectAnswers)
+        for answer in incorrectAnswers {
+            answer.htmlAttributedString(size: 10.0)
+            incorrectAnswers.append(answer)
+        }
         setTitlesForButtons()
     }
     
